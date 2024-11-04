@@ -47,6 +47,7 @@ __published:	// IDE-managed Components
 	TBitBtn *bStart;
 	TLabel *lStart;
 	TSaveDialog *sdMain;
+	TOpenDialog *odMain;
 	void __fastcall pbTrackPaint(TObject *Sender);
 	void __fastcall pbTrackMouseMove(TObject *Sender, TShiftState Shift, int X, int Y);
 	void __fastcall pbTrackMouseDown(TObject *Sender, TMouseButton Button, TShiftState Shift,

@@ -21,7 +21,6 @@ class RaceTrackHandler
 {
     const static int kTrackCount = 1;
 
-	bool LoadTrack(const std::wstring);
 	bool GeneratePoints(RaceTrack&);
 
 	void AddPoints(bool, int, int&, int&, std::vector<RaceTrackPoint>&);
@@ -34,5 +33,6 @@ public:
 
 	void Clear(int);
 
+	bool Load(int, const std::wstring);
     bool Save(int, const std::wstring);
 };

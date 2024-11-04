@@ -1,7 +1,7 @@
 object Form1: TForm1
   Left = 0
   Top = 0
-  Caption = 'Form1'
+  Caption = 'SRETrackEditor v0.1 - November 4th 2024'
   ClientHeight = 839
   ClientWidth = 1429
   Color = clBtnFace
@@ -761,7 +761,12 @@ object Form1: TForm1
   object sdMain: TSaveDialog
     DefaultExt = '.dat'
     Filter = 'SRE Track Files (*.dat)|*.dat'
-    Left = 1232
-    Top = 16
+    Left = 1048
+    Top = 24
+  end
+  object odMain: TOpenDialog
+    Filter = 'SRE Track Files (*.dat)|*.dat'
+    Left = 1120
+    Top = 24
   end
 end

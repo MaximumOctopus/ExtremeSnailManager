@@ -63,6 +63,8 @@ void __fastcall TForm1::FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shif
 void TForm1::UpdateInfoPanel()
 {
 	lTileHex->Caption = IntToHex(drawtool.Tile, 2);
+
+	lStart->Caption = L"x: " + IntToStr(GRaceTrackHandler->RaceTracks[0].StartX) + L", y: " + IntToStr(GRaceTrackHandler->RaceTracks[0].StartY);
 }
 
 
@@ -76,7 +78,12 @@ void __fastcall TForm1::bNewClick(TObject *Sender)
 
 void __fastcall TForm1::bLoadClick(TObject *Sender)
 {
-//
+	if (odMain->Execute())
+	{
+		GRaceTrackHandler->Load(0, odMain->FileName.c_str());
+
+		UpdateInfoPanel();
+	}
 }
 
 
@@ -157,8 +164,7 @@ void __fastcall TForm1::pbTrackMouseDown(TObject *Sender, TMouseButton Button, T
 		GRaceTrackHandler->RaceTracks[0].StartX = drawtool.x;
 		GRaceTrackHandler->RaceTracks[0].StartY = drawtool.y;
 
-		lStart->Caption = L"x: " + IntToStr(drawtool.x) + L", y: " + IntToStr(drawtool.y);
-
+		UpdateInfoPanel();
 		break;
 	}
 }

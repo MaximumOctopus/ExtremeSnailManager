@@ -26,7 +26,7 @@ RaceTrackHandler::RaceTrackHandler(bool autoload, const std::wstring path)
 		{
 			std::wstring file_name = path + L"data\\system\\tracks\\racetrack" + IntToHex(t + 1, 3).c_str() + L".dat";
 
-			LoadTrack(file_name);
+			Load(-1, file_name);
 		}
 	}
 }
@@ -38,7 +38,7 @@ void RaceTrackHandler::Clear(int index)
 }
 
 
-bool RaceTrackHandler::LoadTrack(const std::wstring file_name)
+bool RaceTrackHandler::Load(int index, const std::wstring file_name)
 {
 	std::wifstream file(file_name);
 
@@ -96,7 +96,14 @@ bool RaceTrackHandler::LoadTrack(const std::wstring file_name)
 							{
 								rt.SetStartDirection(initialdirection);
 
-								RaceTracks.push_back(rt);
+								if (index == -1)
+								{
+									RaceTracks.push_back(rt);
+								}
+								else
+								{
+                                    RaceTracks[index] = rt;
+								}
 							}
 						}
 						else
@@ -394,8 +401,7 @@ bool RaceTrackHandler::Save(int index, const std::wstring file_name)
 
 	if (file)
 	{
-		file << Formatting::to_utf8(L"[\n");
-
+		file << Formatting::to_utf8(L"{\n");
 		file << Formatting::to_utf8(L"d:" + RaceTracks[index].Name + L"\n");
 		file << Formatting::to_utf8(L"u:" + std::to_wstring(RaceTracks[index].UniqueId) + L"\n");
 		file << Formatting::to_utf8(L"z:" + std::to_wstring(RaceTracks[index].CountryId) + L"\n");
@@ -444,10 +450,12 @@ bool RaceTrackHandler::Save(int index, const std::wstring file_name)
 			file << Formatting::to_utf8(L"r:" + row + L"\n");
 		}
 
+		file << Formatting::to_utf8(L"}\n");
+
 		file.close();
 
 		return true;
 	}
 
-    return false;
+	return false;
 }
