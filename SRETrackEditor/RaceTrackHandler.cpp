@@ -166,19 +166,28 @@ bool RaceTrackHandler::Load(int index, const std::wstring file_name)
 }
 
 
+bool RaceTrackHandler::Test(int index)
+{
+    return GeneratePoints(RaceTracks[index]);
+}
+
+
 bool RaceTrackHandler::GeneratePoints(RaceTrack &rt)
 {
+    rt.Points.clear();
+
 	int x = rt.StartX;
 	int y = rt.StartY;
 	bool is_stage = false;  // track type loop or stage
 	bool finished = false;
 	bool valid = true;
+	int tile = 0;
 
 	TrackDirection direction = rt.StartDirection;
 
 	while (!finished && valid)
 	{
-		int tile = rt.Grid[y * kMaxTrackWidth + x];
+		tile = rt.Grid[y * kMaxTrackWidth + x];
 
 		BasicTrackType btt = TrackHelper::GetBasicTrackType(tile);
 
@@ -327,25 +336,28 @@ bool RaceTrackHandler::GeneratePoints(RaceTrack &rt)
 				break;
 
 			default:
-				ShowMessage(L"Tile: " + IntToStr(tile) + L"; x:" + IntToStr(x) + L" y: " + IntToStr(y));
+				ShowMessage(L"Tile: " + IntToStr(tile) + L"; x:" + IntToStr(x) + L" y: " + IntToStr(y) + L"; " + TrackHelper::TrackDirectionToStr(direction).c_str());
 				valid = false;
 				break;
 		}
 
-		switch (direction)
+		if (valid)
 		{
-		case TrackDirection::kNorth:
-			y--;
-			break;
-		case TrackDirection::kEast:
-			x++;
-			break;
-		case TrackDirection::kSouth:
-			y++;
-			break;
-		case TrackDirection::kWest:
-			x--;
-			break;
+			switch (direction)
+			{
+			case TrackDirection::kNorth:
+				y--;
+				break;
+			case TrackDirection::kEast:
+				x++;
+				break;
+			case TrackDirection::kSouth:
+				y++;
+				break;
+			case TrackDirection::kWest:
+				x--;
+				break;
+			}
 		}
 
 		if (x == rt.StartX && y == rt.StartY)
@@ -354,12 +366,12 @@ bool RaceTrackHandler::GeneratePoints(RaceTrack &rt)
 		}
 	}
 
-	#if DEBUG
+  //	#if DEBUG
 	if (!valid)
 	{
-		ShowMessage(L"Invalid track at x:" + IntToStr(x) + L" y: " + IntToStr(y));
+		ShowMessage(L"Invalid track " + IntToStr(tile) + L" at x:" + IntToStr(x) + L" y: " + IntToStr(y) + L"; " + TrackHelper::TrackDirectionToStr(direction).c_str());
 	}
-	#endif
+   //	#endif
 
 	return valid;
 }
@@ -373,24 +385,30 @@ void RaceTrackHandler::AddPoints(bool forwards, int tile, int &x, int &y, std::v
 	{
 		int xpos = x * 64;
 		int ypos = y * 64;
+		int deltax = 0;
+		int deltay = 0;
 		int h = i;
 
 		if (forwards)
 		{
-			xpos += kTrackTileData[tile][i][0];
-			ypos += kTrackTileData[tile][i][1];
+			deltax = kTrackTileData[tile][i][0];
+			deltay = kTrackTileData[tile][i][1];
 		}
 		else
 		{
-			xpos += kTrackTileData[tile][63 - i][0];
-			ypos += kTrackTileData[tile][63 - i][1];
-
-			h = 63 - i;
+			deltax = kTrackTileData[tile][63 - i][0];
+			deltay = kTrackTileData[tile][63 - i][1];
 		}
 
-		RaceTrackPoint rtp(xpos, ypos, TrackSurface::kNone, is_corner, kTrackTileHazard[tile][h]);
+		if (deltax != -1 && deltay != -1)
+		{
+			xpos += deltax;
+			ypos += deltay;
 
-		rtps.push_back(rtp);
+			RaceTrackPoint rtp(xpos, ypos, TrackSurface::kNone, is_corner, kTrackTileHazard[tile][h]);
+
+			rtps.push_back(rtp);
+		}
 	}
 }
 

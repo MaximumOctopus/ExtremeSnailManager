@@ -44,6 +44,22 @@ TrackDirection TrackHelper::Flip180(TrackDirection td)
 }
 
 
+std::wstring TrackHelper::TrackDirectionToStr(TrackDirection td)
+{
+	switch (td)
+	{
+		case TrackDirection::kNorth:
+			return L"North";
+		case TrackDirection::kEast:
+			return L"East";
+		case TrackDirection::kSouth:
+			return L"South";
+		case TrackDirection::kWest:
+			return L"West";
+	}
+}
+
+
 bool TrackHelper::IsCorner(int tile)
 {
 	switch (tile)
@@ -102,17 +118,22 @@ BasicTrackType TrackHelper::GetBasicTrackType(int tile)
 	case kTileCornerFlatTL:
 	case kTileCornerBankedTL:
 	case kCornerLargeTL1:
+	case kSBendHBT1:
+	case kSBendVRL3:
 		return BasicTrackType::kCurveTL;
 
 	case kTileCornerFlatTR:
 	case kTileCornerBankedTR:
 	case kCornerLargeTR2:
 	case kSBendHTB2:
+    case kSBendVLR4:
 		return BasicTrackType::kCurveTR;
 
 	case kTileCornerFlatBR:
 	case kTileCornerBankedBR:
 	case kCornerLargeBR1:
+	case kCornerLargeBR4:
+	case kSBendHBT4:
 	case kSBendHBT3:
 	case kSBendVRL4:
 		return BasicTrackType::kCurveBR;
@@ -120,7 +141,8 @@ BasicTrackType TrackHelper::GetBasicTrackType(int tile)
 	case kTileCornerFlatBL:
 	case kTileCornerBankedBL:
 	case kCornerLargeBL3:
-	case kSBendVLR3:
+	case kSBendHTB4:
+    case kSBendVLR3:
 		return BasicTrackType::kCurveBL;
 
 	case kTileStraightH:
@@ -134,8 +156,6 @@ BasicTrackType TrackHelper::GetBasicTrackType(int tile)
 	case kCornerLargeBR3:
 	case kCornerLargeBL4:
 	case kSBendHTB1:
-	case kSBendHTB4:
-	case kSBendHBT1:
 	case kSBendHBT2:
 		return BasicTrackType::kHorizontal;
 
@@ -150,9 +170,7 @@ BasicTrackType TrackHelper::GetBasicTrackType(int tile)
 	case kCornerLargeBR2:
 	case kCornerLargeBL1:
 	case kSBendVRL2:
-	case kSBendVRL3:
 	case kSBendVLR1:
-	case kSBendVLR4:
 		return BasicTrackType::kVertical;
 
 	case kTileCrossroads:

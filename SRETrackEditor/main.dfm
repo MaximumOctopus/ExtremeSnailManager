@@ -1,7 +1,7 @@
 object Form1: TForm1
   Left = 0
   Top = 0
-  Caption = 'SRETrackEditor v0.1 - November 4th 2024'
+  Caption = 'SRETrackEditor v0.2 - November 5th 2024'
   ClientHeight = 839
   ClientWidth = 1429
   Color = clBtnFace
@@ -27,7 +27,7 @@ object Form1: TForm1
   end
   object lTileHex: TLabel
     Left = 840
-    Top = 40
+    Top = 38
     Width = 18
     Height = 21
     Caption = '00'
@@ -137,7 +137,7 @@ object Form1: TForm1
     OnClick = Image1Click
   end
   object Image5: TImage
-    Tag = 13
+    Tag = 11
     Left = 150
     Top = 39
     Width = 32
@@ -154,7 +154,7 @@ object Form1: TForm1
   object Image6: TImage
     Tag = 13
     Left = 188
-    Top = 40
+    Top = 39
     Width = 32
     Height = 32
     Hint = 'straight (water)'
@@ -257,7 +257,7 @@ object Form1: TForm1
     Top = 40
     Width = 32
     Height = 32
-    Hint = 'tunnel'
+    Hint = 'medium corner (top left)'
     Picture.Data = {
       0954506E67496D61676589504E470D0A1A0A0000000D49484452000000200000
       00200802000000FC18EDA3000000097048597300000B1300000B1301009A9C18
@@ -305,7 +305,7 @@ object Form1: TForm1
     Top = 40
     Width = 32
     Height = 32
-    Hint = 'tunnel'
+    Hint = 'medium corner (top right)'
     Picture.Data = {
       0954506E67496D61676589504E470D0A1A0A0000000D49484452000000200000
       00200802000000FC18EDA3000000097048597300000B1300000B1301009A9C18
@@ -352,7 +352,7 @@ object Form1: TForm1
     Top = 40
     Width = 32
     Height = 32
-    Hint = 'wide corner'
+    Hint = 'medium corner (bottom right)'
     Picture.Data = {
       0954506E67496D61676589504E470D0A1A0A0000000D49484452000000200000
       00200802000000FC18EDA3000000097048597300000B1300000B1301009A9C18
@@ -399,7 +399,7 @@ object Form1: TForm1
     Top = 40
     Width = 32
     Height = 32
-    Hint = 'S-bend'
+    Hint = 'medium corner (bottom left)'
     Picture.Data = {
       0954506E67496D61676589504E470D0A1A0A0000000D49484452000000200000
       00200802000000FC18EDA3000000097048597300000B1300000B1301009A9C18
@@ -461,7 +461,7 @@ object Form1: TForm1
     Top = 40
     Width = 32
     Height = 32
-    Hint = 'bridge'
+    Hint = 'tunnel'
     Picture.Data = {
       0954506E67496D61676589504E470D0A1A0A0000000D49484452000000200000
       00200802000000FC18EDA3000000097048597300000B1300000B1301009A9C18
@@ -523,7 +523,7 @@ object Form1: TForm1
     Top = 40
     Width = 32
     Height = 32
-    Hint = 'tunnel'
+    Hint = 's-bend (left to right #1)'
     Picture.Data = {
       0954506E67496D61676589504E470D0A1A0A0000000D49484452000000200000
       00200802000000FC18EDA3000000097048597300000B1300000B1301009A9C18
@@ -565,7 +565,7 @@ object Form1: TForm1
     Top = 40
     Width = 32
     Height = 32
-    Hint = 'tunnel'
+    Hint = 's-bend (left to right #2)'
     Picture.Data = {
       0954506E67496D61676589504E470D0A1A0A0000000D49484452000000200000
       00200802000000FC18EDA3000000097048597300000B1300000B1301009A9C18
@@ -607,7 +607,7 @@ object Form1: TForm1
     Top = 40
     Width = 32
     Height = 32
-    Hint = 'wide corner'
+    Hint = 's-bend (top to bottom #1)'
     Picture.Data = {
       0954506E67496D61676589504E470D0A1A0A0000000D49484452000000200000
       00200802000000FC18EDA3000000097048597300000B1300000B1301009A9C18
@@ -652,7 +652,7 @@ object Form1: TForm1
     Top = 40
     Width = 32
     Height = 32
-    Hint = 'S-bend'
+    Hint = 's-bend (top to bottom #2)'
     Picture.Data = {
       0954506E67496D61676589504E470D0A1A0A0000000D49484452000000200000
       00200802000000FC18EDA3000000097048597300000B1300000B1301009A9C18
@@ -701,8 +701,34 @@ object Form1: TForm1
     OnClick = Image1Click
   end
   object lStart: TLabel
-    Left = 485
+    Left = 549
+    Top = 7
+    Width = 25
+    Height = 21
+    Caption = '0, 0'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = 'Segoe UI'
+    Font.Style = []
+    ParentFont = False
+  end
+  object lLength: TLabel
+    Left = 380
     Top = 8
+    Width = 23
+    Height = 21
+    Caption = 'n/a'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = 'Segoe UI'
+    Font.Style = []
+    ParentFont = False
+  end
+  object lCursor: TLabel
+    Left = 840
+    Top = 55
     Width = 25
     Height = 21
     Caption = '0, 0'
@@ -750,13 +776,22 @@ object Form1: TForm1
     OnClick = bTestClick
   end
   object bStart: TBitBtn
-    Left = 392
-    Top = 9
+    Left = 456
+    Top = 8
     Width = 75
     Height = 25
     Caption = 'Start'
     TabOrder = 4
     OnClick = bStartClick
+  end
+  object cbShowRoute: TCheckBox
+    Left = 697
+    Top = 8
+    Width = 97
+    Height = 17
+    Caption = 'Show route'
+    TabOrder = 5
+    OnClick = cbShowRouteClick
   end
   object sdMain: TSaveDialog
     DefaultExt = '.dat'

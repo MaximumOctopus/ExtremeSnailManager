@@ -34,5 +34,7 @@ public:
 	void Clear(int);
 
 	bool Load(int, const std::wstring);
-    bool Save(int, const std::wstring);
+	bool Save(int, const std::wstring);
+
+    bool Test(int);
 };

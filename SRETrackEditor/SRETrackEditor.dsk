@@ -16,20 +16,20 @@ File_13=TSourceModule,'C:\Users\iamru\Documents\Software Development\CBuilder\Sn
 
 [Modules]
 Module0=C:\Users\iamru\Documents\Software Development\CBuilder\SRETrackEditor\main.cpp
-Module1=C:\Users\iamru\Documents\Software Development\CBuilder\SRETrackEditor\TileUtility.cpp
+Module1=C:\Users\iamru\Documents\Software Development\CBuilder\SRETrackEditor\ConstantsTrack.h
 Module2=C:\Users\iamru\Documents\Software Development\CBuilder\SRETrackEditor\ConstantsTrack.cpp
-Module3=C:\Users\iamru\Documents\Software Development\CBuilder\SRETrackEditor\ConstantsTrack.h
-Module4=C:\Users\iamru\Documents\Software Development\CBuilder\SRETrackEditor\TileUtility.h
-Module5=C:\Users\iamru\Documents\Software Development\CBuilder\SRETrackEditor\DrawTool.h
-Module6=C:\Users\iamru\Documents\Software Development\CBuilder\SRETrackEditor\SRETrackEditor.cbproj
-Module7=C:\Users\iamru\Documents\Software Development\CBuilder\SRETrackEditor\RaceTrackHandler.cpp
-Module8=C:\Users\iamru\Documents\Software Development\CBuilder\SRETrackEditor\RaceTrack.cpp
-Module9=C:\Users\iamru\Documents\Software Development\CBuilder\SRETrackEditor\RaceTrack.h
-Module10=C:\Users\iamru\Documents\Software Development\CBuilder\SRETrackEditor\Formatting.cpp
-Module11=C:\Users\iamru\Documents\Software Development\CBuilder\SRETrackEditor\Formatting.h
-Module12=C:\Users\iamru\Documents\Software Development\CBuilder\SRETrackEditor\RaceTrackHandler.h
-Module13=C:\Users\iamru\Documents\Software Development\CBuilder\SRETrackEditor\ImageHandler.cpp
-Module14=C:\Users\iamru\Documents\Software Development\CBuilder\SnailRacingExtreme\Code\Constants\ConstantsImages.h
+Module3=C:\Users\iamru\Documents\Software Development\CBuilder\SRETrackEditor\RaceTrackHandler.cpp
+Module4=C:\Users\iamru\Documents\Software Development\CBuilder\SRETrackEditor\SRETrackEditor.cbproj
+Module5=C:\Users\iamru\Documents\Software Development\CBuilder\SnailRacingExtreme\Code\Constants\ConstantsImages.h
+Module6=C:\Users\iamru\Documents\Software Development\CBuilder\SRETrackEditor\RaceTrack.h
+Module7=C:\Users\iamru\Documents\Software Development\CBuilder\SRETrackEditor\RaceTrackHandler.h
+Module8=C:\Users\iamru\Documents\Software Development\CBuilder\SRETrackEditor\TileUtility.cpp
+Module9=C:\Users\iamru\Documents\Software Development\CBuilder\SRETrackEditor\TileUtility.h
+Module10=C:\Users\iamru\Documents\Software Development\CBuilder\SRETrackEditor\DrawTool.h
+Module11=C:\Users\iamru\Documents\Software Development\CBuilder\SRETrackEditor\RaceTrack.cpp
+Module12=C:\Users\iamru\Documents\Software Development\CBuilder\SRETrackEditor\Formatting.cpp
+Module13=C:\Users\iamru\Documents\Software Development\CBuilder\SRETrackEditor\Formatting.h
+Module14=C:\Users\iamru\Documents\Software Development\CBuilder\SRETrackEditor\ImageHandler.cpp
 Module15=C:\Users\iamru\Documents\Software Development\CBuilder\SRETrackEditor\ImageHandler.h
 Module16=C:\Users\iamru\Documents\Software Development\CBuilder\SnailRacingExtreme\Code\Constants\ConstantsTrack.h
 Module17=C:\Users\iamru\Documents\Software Development\CBuilder\SnailRacingExtreme\Code\Racetrack\RaceTrackPoint.h
@@ -43,13 +43,28 @@ EditWindowCount=1
 [C:\Users\iamru\Documents\Software Development\CBuilder\SRETrackEditor\main.cpp]
 ModuleType=TSourceModule
 
-[C:\Users\iamru\Documents\Software Development\CBuilder\SRETrackEditor\TileUtility.cpp]
+[C:\Users\iamru\Documents\Software Development\CBuilder\SRETrackEditor\ConstantsTrack.h]
 ModuleType=TSourceModule
 
 [C:\Users\iamru\Documents\Software Development\CBuilder\SRETrackEditor\ConstantsTrack.cpp]
 ModuleType=TSourceModule
 
-[C:\Users\iamru\Documents\Software Development\CBuilder\SRETrackEditor\ConstantsTrack.h]
+[C:\Users\iamru\Documents\Software Development\CBuilder\SRETrackEditor\RaceTrackHandler.cpp]
+ModuleType=TSourceModule
+
+[C:\Users\iamru\Documents\Software Development\CBuilder\SRETrackEditor\SRETrackEditor.cbproj]
+ModuleType=TBaseProject
+
+[C:\Users\iamru\Documents\Software Development\CBuilder\SnailRacingExtreme\Code\Constants\ConstantsImages.h]
+ModuleType=TSourceModule
+
+[C:\Users\iamru\Documents\Software Development\CBuilder\SRETrackEditor\RaceTrack.h]
+ModuleType=TSourceModule
+
+[C:\Users\iamru\Documents\Software Development\CBuilder\SRETrackEditor\RaceTrackHandler.h]
+ModuleType=TSourceModule
+
+[C:\Users\iamru\Documents\Software Development\CBuilder\SRETrackEditor\TileUtility.cpp]
 ModuleType=TSourceModule
 
 [C:\Users\iamru\Documents\Software Development\CBuilder\SRETrackEditor\TileUtility.h]
@@ -58,16 +73,7 @@ ModuleType=TSourceModule
 [C:\Users\iamru\Documents\Software Development\CBuilder\SRETrackEditor\DrawTool.h]
 ModuleType=TSourceModule
 
-[C:\Users\iamru\Documents\Software Development\CBuilder\SRETrackEditor\SRETrackEditor.cbproj]
-ModuleType=TBaseProject
-
-[C:\Users\iamru\Documents\Software Development\CBuilder\SRETrackEditor\RaceTrackHandler.cpp]
-ModuleType=TSourceModule
-
 [C:\Users\iamru\Documents\Software Development\CBuilder\SRETrackEditor\RaceTrack.cpp]
-ModuleType=TSourceModule
-
-[C:\Users\iamru\Documents\Software Development\CBuilder\SRETrackEditor\RaceTrack.h]
 ModuleType=TSourceModule
 
 [C:\Users\iamru\Documents\Software Development\CBuilder\SRETrackEditor\Formatting.cpp]
@@ -76,13 +82,7 @@ ModuleType=TSourceModule
 [C:\Users\iamru\Documents\Software Development\CBuilder\SRETrackEditor\Formatting.h]
 ModuleType=TSourceModule
 
-[C:\Users\iamru\Documents\Software Development\CBuilder\SRETrackEditor\RaceTrackHandler.h]
-ModuleType=TSourceModule
-
 [C:\Users\iamru\Documents\Software Development\CBuilder\SRETrackEditor\ImageHandler.cpp]
-ModuleType=TSourceModule
-
-[C:\Users\iamru\Documents\Software Development\CBuilder\SnailRacingExtreme\Code\Constants\ConstantsImages.h]
 ModuleType=TSourceModule
 
 [C:\Users\iamru\Documents\Software Development\CBuilder\SRETrackEditor\ImageHandler.h]
@@ -151,12 +151,12 @@ StayOnTop=0
 DockedToMainForm=1
 BorlandEditorCodeExplorer=BorlandEditorCodeExplorer@EditWindow0
 TopPanelSize=0
-LeftPanelSize=1776
+LeftPanelSize=1343
 LeftPanelClients=PropertyInspector,DockSite3
-LeftPanelData=00000800010100000000AC0B00000000000001F00600000000000001000000005A0E000009000000446F636B53697465330100000000E31B00001100000050726F7065727479496E73706563746F72FFFFFFFF
-RightPanelSize=1997
+LeftPanelData=00000800010100000000AC0B000000000000013F0500000000000001000000005A0E000009000000446F636B53697465330100000000E31B00001100000050726F7065727479496E73706563746F72FFFFFFFF
+RightPanelSize=808
 RightPanelClients=DockSite2,DockSite4
-RightPanelData=00000800010100000000AC0B00000000000001CD0700000000000001000000004912000009000000446F636B53697465320100000000E31B000009000000446F636B5369746534FFFFFFFF
+RightPanelData=00000800010100000000AC0B00000000000001280300000000000001000000004912000009000000446F636B53697465320100000000E31B000009000000446F636B5369746534FFFFFFFF
 BottomPanelSize=1549
 BottomPanelClients=MessageView,DockSite1
 BottomPanelData=0000080001020100000009000000446F636B53697465315E46000000000000020D0600000000000001000000005E4600000F0000004D65737361676556696577466F726DFFFFFFFF
@@ -167,13 +167,13 @@ BottomMiddelPanelData=0000080001020200000009000000446F636B5369746530100000004772
 [View0]
 CustomEditViewType=TEditView
 Module=C:\Users\iamru\Documents\Software Development\CBuilder\SRETrackEditor\main.cpp
-CursorX=38
-CursorY=178
-TopLine=164
+CursorX=129
+CursorY=193
+TopLine=165
 LeftCol=1
 Elisions=
 Bookmarks=
-EditViewName=C:\Users\iamru\Documents\Software Development\CBuilder\SRETrackEditor\main.cpp
+EditViewName=Borland.FormDesignerView
 
 [View1]
 CustomEditViewType=TEditView
@@ -189,8 +189,8 @@ EditViewName=C:\Users\iamru\Documents\Software Development\CBuilder\SRETrackEdit
 [View2]
 CustomEditViewType=TEditView
 Module=C:\Users\iamru\Documents\Software Development\CBuilder\SRETrackEditor\RaceTrackHandler.h
-CursorX=1
-CursorY=37
+CursorX=20
+CursorY=39
 TopLine=1
 LeftCol=1
 Elisions=
@@ -266,9 +266,9 @@ EditViewName=C:\Users\iamru\Documents\Software Development\CBuilder\SRETrackEdit
 [View9]
 CustomEditViewType=TEditView
 Module=C:\Users\iamru\Documents\Software Development\CBuilder\SRETrackEditor\RaceTrackHandler.cpp
-CursorX=62
-CursorY=444
-TopLine=415
+CursorX=144
+CursorY=372
+TopLine=315
 LeftCol=1
 Elisions=
 Bookmarks=
@@ -343,11 +343,11 @@ EditViewName=C:\Users\iamru\Documents\Software Development\CBuilder\SnailRacingE
 [View16]
 CustomEditViewType=TEditView
 Module=C:\Users\iamru\Documents\Software Development\CBuilder\SRETrackEditor\ConstantsTrack.h
-CursorX=1
-CursorY=64
-TopLine=62
+CursorX=47
+CursorY=184
+TopLine=158
 LeftCol=1
-Elisions={{99,7},{255,8},{'TrackTileData'}}
+Elisions=
 Bookmarks=
 EditViewName=C:\Users\iamru\Documents\Software Development\CBuilder\SRETrackEditor\ConstantsTrack.h
 
@@ -376,9 +376,9 @@ EditViewName=C:\Users\iamru\Documents\Software Development\CBuilder\SRETrackEdit
 [View19]
 CustomEditViewType=TEditView
 Module=C:\Users\iamru\Documents\Software Development\CBuilder\SRETrackEditor\ConstantsTrack.cpp
-CursorX=66
-CursorY=178
-TopLine=13
+CursorX=21
+CursorY=129
+TopLine=114
 LeftCol=1
 Elisions=
 Bookmarks=
@@ -448,7 +448,7 @@ Create=1
 Visible=1
 Docked=0
 State=0
-Left=2349
+Left=2326
 Top=50
 Width=7634
 Height=9850
@@ -468,11 +468,11 @@ Docked=1
 State=0
 Left=0
 Top=0
-Width=1997
+Width=808
 Height=4357
 MaxLeft=-1
 MaxTop=-1
-ClientWidth=1997
+ClientWidth=808
 ClientHeight=4357
 TBDockHeight=5900
 LRDockWidth=2349
@@ -532,11 +532,11 @@ Docked=1
 State=0
 Left=0
 Top=0
-Width=1997
+Width=808
 Height=2329
 MaxLeft=-1
 MaxTop=-1
-ClientWidth=1997
+ClientWidth=808
 ClientHeight=2329
 TBDockHeight=7150
 LRDockWidth=1997
@@ -551,17 +551,22 @@ Docked=1
 State=0
 Left=0
 Top=557
-Width=1776
+Width=1343
 Height=3364
 MaxLeft=-1
 MaxTop=-1
-ClientWidth=1776
+ClientWidth=1343
 ClientHeight=3364
 TBDockHeight=4250
-LRDockWidth=1776
+LRDockWidth=1343
 Dockable=1
 StayOnTop=0
-SplitPos=111
+SplitPos=149
+
+[PropInspDesignerSelection]
+ArrangeBy=Name
+SelectedItem=Caption,Action
+ExpandedItems=Anchors=0,Constraints=0,LiveBindings=0,BorderIcons=0,CustomTitleBar=0
 
 [frmDesignPreview]
 PercentageSizes=1
@@ -897,11 +902,11 @@ Docked=1
 State=0
 Left=0
 Top=0
-Width=1776
+Width=1343
 Height=3521
 MaxLeft=-1
 MaxTop=-1
-ClientWidth=1776
+ClientWidth=1343
 ClientHeight=3521
 TBDockHeight=3679
 LRDockWidth=1895
@@ -988,14 +993,14 @@ Docked=1
 State=0
 Left=0
 Top=28
-Width=1997
+Width=808
 Height=4557
 MaxLeft=-1
 MaxTop=-1
-ClientWidth=1997
+ClientWidth=808
 ClientHeight=4557
 TBDockHeight=4250
-LRDockWidth=1997
+LRDockWidth=808
 Dockable=1
 StayOnTop=0
 TabPosition=1
@@ -1012,14 +1017,14 @@ Docked=1
 State=0
 Left=0
 Top=28
-Width=1776
+Width=1343
 Height=3521
 MaxLeft=-1
 MaxTop=-1
-ClientWidth=1776
+ClientWidth=1343
 ClientHeight=3521
 TBDockHeight=4250
-LRDockWidth=1776
+LRDockWidth=1343
 Dockable=1
 StayOnTop=0
 TabPosition=1
@@ -1036,14 +1041,14 @@ Docked=1
 State=0
 Left=0
 Top=702
-Width=1997
+Width=808
 Height=2329
 MaxLeft=-1
 MaxTop=-1
-ClientWidth=1997
+ClientWidth=808
 ClientHeight=2329
 TBDockHeight=4250
-LRDockWidth=1997
+LRDockWidth=808
 Dockable=1
 StayOnTop=0
 TabPosition=1

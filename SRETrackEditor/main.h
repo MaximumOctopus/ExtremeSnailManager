@@ -48,6 +48,9 @@ __published:	// IDE-managed Components
 	TLabel *lStart;
 	TSaveDialog *sdMain;
 	TOpenDialog *odMain;
+	TLabel *lLength;
+	TLabel *lCursor;
+	TCheckBox *cbShowRoute;
 	void __fastcall pbTrackPaint(TObject *Sender);
 	void __fastcall pbTrackMouseMove(TObject *Sender, TShiftState Shift, int X, int Y);
 	void __fastcall pbTrackMouseDown(TObject *Sender, TMouseButton Button, TShiftState Shift,
@@ -64,6 +67,7 @@ __published:	// IDE-managed Components
 	void __fastcall Image1Click(TObject *Sender);
 	void __fastcall bStartClick(TObject *Sender);
 	void __fastcall Image10Click(TObject *Sender);
+	void __fastcall cbShowRouteClick(TObject *Sender);
 
 private:
 
