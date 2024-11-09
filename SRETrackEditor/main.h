@@ -22,7 +22,7 @@ __published:	// IDE-managed Components
 	TLabel *lTileHex;
 	TBitBtn *bNew;
 	TBitBtn *bLoad;
-	TBitBtn *bSave;
+	TBitBtn *bSaveAs;
 	TBitBtn *bTest;
 	TImage *Image1;
 	TImage *Image2;
@@ -51,6 +51,8 @@ __published:	// IDE-managed Components
 	TLabel *lLength;
 	TLabel *lCursor;
 	TCheckBox *cbShowRoute;
+	TComboBox *cbStartDirection;
+	TBitBtn *bSave;
 	void __fastcall pbTrackPaint(TObject *Sender);
 	void __fastcall pbTrackMouseMove(TObject *Sender, TShiftState Shift, int X, int Y);
 	void __fastcall pbTrackMouseDown(TObject *Sender, TMouseButton Button, TShiftState Shift,
@@ -61,18 +63,23 @@ __published:	// IDE-managed Components
           bool &Handled);
 	void __fastcall bLoadClick(TObject *Sender);
 	void __fastcall bNewClick(TObject *Sender);
-	void __fastcall bSaveClick(TObject *Sender);
+	void __fastcall bSaveAsClick(TObject *Sender);
 	void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
 	void __fastcall bTestClick(TObject *Sender);
 	void __fastcall Image1Click(TObject *Sender);
 	void __fastcall bStartClick(TObject *Sender);
 	void __fastcall Image10Click(TObject *Sender);
 	void __fastcall cbShowRouteClick(TObject *Sender);
+	void __fastcall cbStartDirectionChange(TObject *Sender);
+	void __fastcall bSaveClick(TObject *Sender);
 
 private:
 
+    std::wstring TrackFileName = L"";
+
 	DrawTool drawtool;
 
+	void UpdateTrackFileName(const std::wstring);
 	void UpdateInfoPanel();
 
 public:

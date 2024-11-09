@@ -54,20 +54,23 @@ void RaceTrack::SetStartDirection(int direction)
 
 	// override the track direction if we can set from the start tile
 
-	switch (tile)
+	if (tile != 0)
 	{
-	case kTileStartDown:
-		StartDirection = TrackDirection::kSouth;
-		break;
-	case kTileStartLeft:
-		StartDirection = TrackDirection::kWest;
-		break;
-	case kTileStartUp:
-		StartDirection = TrackDirection::kNorth;
-		break;
-	case kTileStartRight:
-		StartDirection = TrackDirection::kEast;
-		break;
+		switch (tile)
+		{
+		case kTileStartDown:
+			StartDirection = TrackDirection::kSouth;
+			break;
+		case kTileStartLeft:
+			StartDirection = TrackDirection::kWest;
+			break;
+		case kTileStartUp:
+			StartDirection = TrackDirection::kNorth;
+			break;
+		case kTileStartRight:
+			StartDirection = TrackDirection::kEast;
+			break;
+		}
 	}
 }
 

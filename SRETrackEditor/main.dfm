@@ -1,9 +1,10 @@
 object Form1: TForm1
   Left = 0
   Top = 0
-  Caption = 'SRETrackEditor v0.2 - November 5th 2024'
-  ClientHeight = 839
-  ClientWidth = 1429
+  BorderStyle = bsDialog
+  Caption = 'SRETrackEditor v0.4 - November 9th 2024'
+  ClientHeight = 856
+  ClientWidth = 1798
   Color = clBtnFace
   DoubleBuffered = True
   Font.Charset = DEFAULT_CHARSET
@@ -12,15 +13,17 @@ object Form1: TForm1
   Font.Name = 'Segoe UI'
   Font.Style = []
   KeyPreview = True
+  Position = poScreenCenter
+  ShowHint = True
   OnKeyDown = FormKeyDown
   OnMouseWheelDown = FormMouseWheelDown
   OnMouseWheelUp = FormMouseWheelUp
   TextHeight = 15
   object pbTrack: TPaintBox
-    Left = 0
-    Top = 78
-    Width = 1417
-    Height = 753
+    Left = 4
+    Top = 77
+    Width = 1792
+    Height = 768
     OnMouseDown = pbTrackMouseDown
     OnMouseMove = pbTrackMouseMove
     OnPaint = pbTrackPaint
@@ -348,8 +351,8 @@ object Form1: TForm1
   end
   object Image12: TImage
     Tag = 40
-    Left = 537
-    Top = 40
+    Left = 575
+    Top = 41
     Width = 32
     Height = 32
     Hint = 'medium corner (bottom right)'
@@ -395,8 +398,8 @@ object Form1: TForm1
   end
   object Image13: TImage
     Tag = 44
-    Left = 575
-    Top = 40
+    Left = 537
+    Top = 41
     Width = 32
     Height = 32
     Hint = 'medium corner (bottom left)'
@@ -698,11 +701,25 @@ object Form1: TForm1
     Width = 32
     Height = 32
     Hint = 'chicane'
+    Picture.Data = {
+      0954506E67496D61676589504E470D0A1A0A0000000D49484452000000200000
+      00200802000000FC18EDA3000000097048597300000B1300000B1301009A9C18
+      000001304944415478DAED963B8E833010400305B9041C0094F4A10051920691
+      13F0A9E13450F33901882694080AE8417000B8041461B3DA66B5C2832385222B
+      5E67D99A678FEDB189C3C610BB605530CFF3EFB62CCB4551B8AE6B18C64B813C
+      CFB36D5B14C5FBFD0E09B22C5314856198BAAE4992C48CFE783C4EA7D3300C49
+      92489204099E5C2E97AEEBC23054551553104591AEEB1CC79565B9922278340A
+      604E0B0260BD8BC0595D101CD03BB6087C2E9605D3341D8F47CCFCFC308E2345
+      51B882EF0EE2B52B828C83EA7817BB60177CB260DB8BB679A9F07DDFB22C4110
+      D2345D0D7DBD5EF33C771CC7344D2CC1B35C9FCFE7BEEF5F2AD7344D374D8355
+      AEE338D6348D65D9AAAA30F3C3F37CDBB64110DC6EB77501301A0530A7E5471F
+      B55E144056FF0AE01D03409D8B7FF0B3FB78C11789E2F5D9A1C2E9E100000000
+      49454E44AE426082}
     OnClick = Image1Click
   end
   object lStart: TLabel
-    Left = 549
-    Top = 7
+    Left = 486
+    Top = 8
     Width = 25
     Height = 21
     Caption = '0, 0'
@@ -714,8 +731,8 @@ object Form1: TForm1
     ParentFont = False
   end
   object lLength: TLabel
-    Left = 380
-    Top = 8
+    Left = 684
+    Top = 7
     Width = 23
     Height = 21
     Caption = 'n/a'
@@ -757,17 +774,17 @@ object Form1: TForm1
     TabOrder = 1
     OnClick = bLoadClick
   end
-  object bSave: TBitBtn
-    Left = 162
+  object bSaveAs: TBitBtn
+    Left = 243
     Top = 8
     Width = 75
     Height = 25
-    Caption = 'Save'
+    Caption = 'Save As'
     TabOrder = 2
-    OnClick = bSaveClick
+    OnClick = bSaveAsClick
   end
   object bTest: TBitBtn
-    Left = 290
+    Left = 603
     Top = 8
     Width = 75
     Height = 25
@@ -776,7 +793,7 @@ object Form1: TForm1
     OnClick = bTestClick
   end
   object bStart: TBitBtn
-    Left = 456
+    Left = 337
     Top = 8
     Width = 75
     Height = 25
@@ -785,13 +802,38 @@ object Form1: TForm1
     OnClick = bStartClick
   end
   object cbShowRoute: TCheckBox
-    Left = 697
-    Top = 8
+    Left = 794
+    Top = 9
     Width = 97
     Height = 17
     Caption = 'Show route'
     TabOrder = 5
     OnClick = cbShowRouteClick
+  end
+  object cbStartDirection: TComboBox
+    Left = 418
+    Top = 9
+    Width = 57
+    Height = 23
+    Style = csDropDownList
+    ItemIndex = 1
+    TabOrder = 6
+    Text = 'East'
+    OnChange = cbStartDirectionChange
+    Items.Strings = (
+      'North'
+      'East'
+      'South'
+      'West')
+  end
+  object bSave: TBitBtn
+    Left = 162
+    Top = 8
+    Width = 75
+    Height = 25
+    Caption = 'Save'
+    TabOrder = 7
+    OnClick = bSaveClick
   end
   object sdMain: TSaveDialog
     DefaultExt = '.dat'

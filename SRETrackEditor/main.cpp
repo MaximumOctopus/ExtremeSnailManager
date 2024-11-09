@@ -44,6 +44,8 @@ void __fastcall TForm1::FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shif
 		case 1:
 			drawtool.Tile = TileUtility::RotateCW(drawtool.Tile);
 
+            UpdateInfoPanel();
+
 			pbTrack->Invalidate();
 			break;
 
@@ -79,11 +81,34 @@ void TForm1::UpdateInfoPanel()
 }
 
 
+void TForm1::UpdateTrackFileName(const std::wstring file_name)
+{
+	TrackFileName = file_name;
+
+	if (TrackFileName.empty())
+	{
+		Caption = L"SRETrackEditor v0.4 - November 9th 2024";
+	}
+	else
+	{
+		std::wstring output = L"SRETrackEditor v0.4 - November 9th 2024 [" + TrackFileName + L"]";
+
+		Caption = output.c_str();
+	}
+}
+
+
 void __fastcall TForm1::bNewClick(TObject *Sender)
 {
 	GRaceTrackHandler->Clear(0);
 
-    pbTrack->Invalidate();
+	UpdateTrackFileName(L"");
+
+	cbStartDirection->ItemIndex = 1;
+
+	cbStartDirectionChange(nullptr);
+
+	pbTrack->Invalidate();
 }
 
 
@@ -91,7 +116,25 @@ void __fastcall TForm1::bLoadClick(TObject *Sender)
 {
 	if (odMain->Execute())
 	{
-		GRaceTrackHandler->Load(0, odMain->FileName.c_str());
+		GRaceTrackHandler->Load(0, odMain->FileName.c_str(), true);
+
+		switch (GRaceTrackHandler->RaceTracks[0].StartDirection)
+		{
+		case TrackDirection::kNorth:
+			cbStartDirection->ItemIndex = 0;
+			break;
+		case TrackDirection::kEast:
+			cbStartDirection->ItemIndex = 1;
+			break;
+		case TrackDirection::kSouth:
+			cbStartDirection->ItemIndex = 2;
+			break;
+		case TrackDirection::kWest:
+			cbStartDirection->ItemIndex = 3;
+			break;
+		}
+
+		UpdateTrackFileName(odMain->FileName.c_str());
 
 		UpdateInfoPanel();
 	}
@@ -100,9 +143,24 @@ void __fastcall TForm1::bLoadClick(TObject *Sender)
 
 void __fastcall TForm1::bSaveClick(TObject *Sender)
 {
+	if (TrackFileName.empty())
+	{
+		bSaveAsClick(nullptr);
+	}
+	else
+	{
+		GRaceTrackHandler->Save(0, TrackFileName);
+	}
+}
+
+
+void __fastcall TForm1::bSaveAsClick(TObject *Sender)
+{
 	if (sdMain->Execute())
 	{
 		GRaceTrackHandler->Save(0, sdMain->FileName.c_str());
+
+		UpdateTrackFileName(sdMain->FileName.c_str());
 	}
 }
 
@@ -146,11 +204,11 @@ void __fastcall TForm1::cbShowRouteClick(TObject *Sender)
 
 void __fastcall TForm1::pbTrackPaint(TObject *Sender)
 {
-	for (int h = 0; h < 10; h++)
+	for (int h = 0; h < kMaxTrackHeight; h++)
 	{
-		for (int w = 0; w < 18; w++)
+		for (int w = 0; w < kMaxTrackWidth; w++)
 		{
-			int tile = GRaceTrackHandler->RaceTracks[0].Grid[h * 18 + w];
+			int tile = GRaceTrackHandler->RaceTracks[0].Grid[h * kMaxTrackWidth + w];
 
 			GImageHandler->RaceTrackTiles[tile]->Draw(pbTrack->Canvas, Rect(w * 64, h * 64, w * 64 + 64, h * 64 + 64));
 		}
@@ -198,29 +256,38 @@ void __fastcall TForm1::pbTrackMouseMove(TObject *Sender, TShiftState Shift, int
 void __fastcall TForm1::pbTrackMouseDown(TObject *Sender, TMouseButton Button, TShiftState Shift,
 		  int X, int Y)
 {
-	switch (drawtool.Mode)
+	if (Shift.Contains(ssLeft))
 	{
-	case 1:
-		GRaceTrackHandler->RaceTracks[0].Grid[drawtool.y * kMaxTrackWidth + drawtool.x] = drawtool.Tile;
+		switch (drawtool.Mode)
+		{
+		case 1:
+			GRaceTrackHandler->RaceTracks[0].Grid[drawtool.y * kMaxTrackWidth + drawtool.x] = drawtool.Tile;
+
+			pbTrack->Invalidate();
+			break;
+
+		case 2:
+			GRaceTrackHandler->RaceTracks[0].Grid[drawtool.y * kMaxTrackWidth + drawtool.x] = drawtool.SquareTile1;
+			GRaceTrackHandler->RaceTracks[0].Grid[drawtool.y * kMaxTrackWidth + drawtool.x + 1] = drawtool.SquareTile2;
+			GRaceTrackHandler->RaceTracks[0].Grid[(drawtool.y + 1) * kMaxTrackWidth + drawtool.x] = drawtool.SquareTile3;
+			GRaceTrackHandler->RaceTracks[0].Grid[(drawtool.y + 1) * kMaxTrackWidth + drawtool.x + 1] = drawtool.SquareTile4;
+
+			pbTrack->Invalidate();
+			break;
+
+		case 99:
+			GRaceTrackHandler->RaceTracks[0].StartX = drawtool.x;
+			GRaceTrackHandler->RaceTracks[0].StartY = drawtool.y;
+
+			UpdateInfoPanel();
+			break;
+		}
+	}
+	else if (Shift.Contains(ssRight))
+	{
+		GRaceTrackHandler->RaceTracks[0].Grid[drawtool.y * kMaxTrackWidth + drawtool.x] = 0;
 
 		pbTrack->Invalidate();
-		break;
-
-	case 2:
-		GRaceTrackHandler->RaceTracks[0].Grid[drawtool.y * kMaxTrackWidth + drawtool.x] = drawtool.SquareTile1;
-		GRaceTrackHandler->RaceTracks[0].Grid[drawtool.y * kMaxTrackWidth + drawtool.x + 1] = drawtool.SquareTile2;
-		GRaceTrackHandler->RaceTracks[0].Grid[(drawtool.y + 1) * kMaxTrackWidth + drawtool.x] = drawtool.SquareTile3;
-		GRaceTrackHandler->RaceTracks[0].Grid[(drawtool.y + 1) * kMaxTrackWidth + drawtool.x + 1] = drawtool.SquareTile4;
-
-		pbTrack->Invalidate();
-		break;
-
-	case 99:
-		GRaceTrackHandler->RaceTracks[0].StartX = drawtool.x;
-		GRaceTrackHandler->RaceTracks[0].StartY = drawtool.y;
-
-		UpdateInfoPanel();
-		break;
 	}
 }
 
@@ -286,4 +353,10 @@ void __fastcall TForm1::Image10Click(TObject *Sender)
 	pbTrack->Invalidate();
 
 	UpdateInfoPanel();
+}
+
+
+void __fastcall TForm1::cbStartDirectionChange(TObject *Sender)
+{
+	GRaceTrackHandler->RaceTracks[0].SetStartDirection(cbStartDirection->ItemIndex);
 }

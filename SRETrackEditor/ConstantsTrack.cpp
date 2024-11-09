@@ -60,7 +60,7 @@ std::wstring TrackHelper::TrackDirectionToStr(TrackDirection td)
 }
 
 
-bool TrackHelper::IsCorner(int tile)
+TrackCorner TrackHelper::Corner(int tile)
 {
 	switch (tile)
 	{
@@ -72,6 +72,8 @@ bool TrackHelper::IsCorner(int tile)
 	case kTileCornerBankedTR:
 	case kTileCornerBankedBR:
 	case kTileCornerBankedBL:
+		return TrackCorner::kTight;
+
 	case kCornerLargeTL1:
 	case kCornerLargeTL2:
 	case kCornerLargeTL3:
@@ -104,10 +106,10 @@ bool TrackHelper::IsCorner(int tile)
 	case kSBendVLR2:
 	case kSBendVLR3:
 	case kSBendVLR4:
-		return true;
+		return TrackCorner::kWide;
 	}
 
-	return false;
+	return TrackCorner::kNone;
 }
 
 
@@ -157,6 +159,7 @@ BasicTrackType TrackHelper::GetBasicTrackType(int tile)
 	case kCornerLargeBL4:
 	case kSBendHTB1:
 	case kSBendHBT2:
+	case kChicaneH:
 		return BasicTrackType::kHorizontal;
 
 	case kTileStraightV:
@@ -171,6 +174,7 @@ BasicTrackType TrackHelper::GetBasicTrackType(int tile)
 	case kCornerLargeBL1:
 	case kSBendVRL2:
 	case kSBendVLR1:
+	case kChicaneV:
 		return BasicTrackType::kVertical;
 
 	case kTileCrossroads:

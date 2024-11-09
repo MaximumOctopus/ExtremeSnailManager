@@ -26,7 +26,7 @@ RaceTrackHandler::RaceTrackHandler(bool autoload, const std::wstring path)
 		{
 			std::wstring file_name = path + L"data\\system\\tracks\\racetrack" + IntToHex(t + 1, 3).c_str() + L".dat";
 
-			Load(-1, file_name);
+			Load(-1, file_name, false);
 		}
 	}
 }
@@ -38,7 +38,7 @@ void RaceTrackHandler::Clear(int index)
 }
 
 
-bool RaceTrackHandler::Load(int index, const std::wstring file_name)
+bool RaceTrackHandler::Load(int index, const std::wstring file_name, bool allow_fail)
 {
 	std::wifstream file(file_name);
 
@@ -92,10 +92,10 @@ bool RaceTrackHandler::Load(int index, const std::wstring file_name)
 								rt.AddTrackRow(t, trackdata[t]);
 							}
 
-							if (GeneratePoints(rt))
-							{
-								rt.SetStartDirection(initialdirection);
+							rt.SetStartDirection(initialdirection);
 
+							if (GeneratePoints(rt) || allow_fail)
+							{
 								if (index == -1)
 								{
 									RaceTracks.push_back(rt);
@@ -379,7 +379,7 @@ bool RaceTrackHandler::GeneratePoints(RaceTrack &rt)
 
 void RaceTrackHandler::AddPoints(bool forwards, int tile, int &x, int &y, std::vector<RaceTrackPoint>& rtps)
 {
-	bool is_corner = TrackHelper::IsCorner(tile);
+	TrackCorner corner = TrackHelper::Corner(tile);
 
 	for (int i = 0; i < 64; i++)
 	{
@@ -405,7 +405,7 @@ void RaceTrackHandler::AddPoints(bool forwards, int tile, int &x, int &y, std::v
 			xpos += deltax;
 			ypos += deltay;
 
-			RaceTrackPoint rtp(xpos, ypos, TrackSurface::kNone, is_corner, kTrackTileHazard[tile][h]);
+			RaceTrackPoint rtp(xpos, ypos, TrackSurface::kNone, corner, kTrackTileHazard[tile][h]);
 
 			rtps.push_back(rtp);
 		}

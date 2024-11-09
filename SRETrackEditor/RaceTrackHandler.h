@@ -33,7 +33,7 @@ public:
 
 	void Clear(int);
 
-	bool Load(int, const std::wstring);
+	bool Load(int, const std::wstring, bool);
 	bool Save(int, const std::wstring);
 
     bool Test(int);
