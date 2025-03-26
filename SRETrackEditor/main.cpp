@@ -105,8 +105,10 @@ void __fastcall TForm1::bNewClick(TObject *Sender)
 	UpdateTrackFileName(L"");
 
 	cbStartDirection->ItemIndex = 1;
-
 	cbStartDirectionChange(nullptr);
+
+	cbLevel->ItemIndex = 0;
+    cbLevelChange(nullptr);
 
 	pbTrack->Invalidate();
 }
@@ -131,6 +133,56 @@ void __fastcall TForm1::bLoadClick(TObject *Sender)
 			break;
 		case TrackDirection::kWest:
 			cbStartDirection->ItemIndex = 3;
+			break;
+		}
+
+		switch (GRaceTrackHandler->RaceTracks[0].Terrain)
+		{
+		case TrackTerrain::kRoad:
+			cbTrackTerrain->ItemIndex = 0;
+			break;
+		case TrackTerrain::kDirt:
+			cbTrackTerrain->ItemIndex = 1;
+			break;
+		case TrackTerrain::kGrass:
+			cbTrackTerrain->ItemIndex = 2;
+			break;
+		case TrackTerrain::kDesert:
+			cbTrackTerrain->ItemIndex = 3;
+			break;
+		case TrackTerrain::kIce:
+			cbTrackTerrain->ItemIndex = 4;
+			break;
+
+		default:
+			cbTrackTerrain->ItemIndex = 0;
+		}
+
+		switch (GRaceTrackHandler->RaceTracks[0].Level)
+		{
+		case TrackLevel::kAmateur:
+			cbLevel->ItemIndex = 0;
+			break;
+		case TrackLevel::kAmateurOffRoad:
+			cbLevel->ItemIndex = 1;
+			break;
+		case TrackLevel::kClubSeries:
+			cbLevel->ItemIndex = 2;
+			break;
+		case TrackLevel::kClubSeriesOffRoad:
+			cbLevel->ItemIndex = 3;
+			break;
+		case TrackLevel::kPro:
+			cbLevel->ItemIndex = 4;
+			break;
+		case TrackLevel::kProOffRoad:
+			cbLevel->ItemIndex = 5;
+			break;
+		case TrackLevel::kSuperLeague:
+			cbLevel->ItemIndex = 6;
+			break;
+		case TrackLevel::kEndurance:
+			cbLevel->ItemIndex = 7;
 			break;
 		}
 
@@ -359,4 +411,16 @@ void __fastcall TForm1::Image10Click(TObject *Sender)
 void __fastcall TForm1::cbStartDirectionChange(TObject *Sender)
 {
 	GRaceTrackHandler->RaceTracks[0].SetStartDirection(cbStartDirection->ItemIndex);
+}
+
+
+void __fastcall TForm1::cbTrackTerrainChange(TObject *Sender)
+{
+	GRaceTrackHandler->RaceTracks[0].SetTrackTerrain(cbTrackTerrain->ItemIndex);
+}
+
+
+void __fastcall TForm1::cbLevelChange(TObject *Sender)
+{
+	GRaceTrackHandler->RaceTracks[0].SetLevel(cbLevel->ItemIndex);
 }

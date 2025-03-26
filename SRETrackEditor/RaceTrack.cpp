@@ -19,7 +19,7 @@ RaceTrack::RaceTrack(int id, std::wstring description, int countryid, int cat, i
 	UniqueId = id;
 	CountryId = countryid;
 	Category = cat;
-	Level = level;
+	SetLevel(level);
 	Scale = scale;
 
 	MapX = mapy;
@@ -29,6 +29,50 @@ RaceTrack::RaceTrack(int id, std::wstring description, int countryid, int cat, i
 	StartY = starty;
 
 	std::memset(Grid, 0, kMaxTrackWidth * kMaxTrackHeight * sizeof(int));
+}
+
+
+void RaceTrack::SetLevel(int level)
+{
+	switch (level)
+	{
+	case 0:
+		Level = TrackLevel::kAmateur;
+		break;
+	case 1:
+		Level = TrackLevel::kAmateurOffRoad;
+		break;
+	case 2:
+		Level = TrackLevel::kAmateurEndurance;
+		break;
+	case 3:
+		Level = TrackLevel::kClubSeries;
+		break;
+	case 4:
+		Level = TrackLevel::kClubSeriesP2P;
+		break;
+	case 5:
+		Level = TrackLevel::kClubSeriesOffRoad;
+		break;
+	case 6:
+		Level = TrackLevel::kPro;
+		break;
+	case 7:
+		Level = TrackLevel::kProP2P;
+		break;
+	case 8:
+		Level = TrackLevel::kProOffRoad;
+		break;
+	case 9:
+		Level = TrackLevel::kSuperLeague;
+		break;
+	case 10:
+		Level = TrackLevel::kSuperLeagueP2P;
+		break;
+	case 11:
+		Level = TrackLevel::kEndurance;
+		break;
+	}
 }
 
 
@@ -71,6 +115,32 @@ void RaceTrack::SetStartDirection(int direction)
 			StartDirection = TrackDirection::kEast;
 			break;
 		}
+	}
+}
+
+
+void RaceTrack::SetTrackTerrain(int terrain)
+{
+	switch (terrain)
+	{
+	case 0:
+		Terrain = TrackTerrain::kRoad;
+		break;
+	case 1:
+		Terrain = TrackTerrain::kDirt;
+		break;
+	case 2:
+		Terrain = TrackTerrain::kGrass;
+		break;
+	case 3:
+		Terrain = TrackTerrain::kDesert;
+		break;
+	case 4:
+		Terrain = TrackTerrain::kIce;
+		break;
+
+	default:
+        Terrain = TrackTerrain::kNone;
 	}
 }
 

@@ -36,5 +36,9 @@ public:
 	bool Load(int, const std::wstring, bool);
 	bool Save(int, const std::wstring);
 
-    bool Test(int);
+	bool Test(int);
+
+	int LevelToInt(TrackLevel);
+	int DirectionToInt(TrackDirection);
+	int TerrainToInt(TrackTerrain);
 };

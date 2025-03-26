@@ -194,13 +194,13 @@ bool RaceTrackHandler::GeneratePoints(RaceTrack &rt)
 		switch (btt)
 		{
 			case BasicTrackType::kCurveTL:
-				if (direction == kNorth)
+				if (direction == TrackDirection::kNorth)
 				{
 					AddPoints(true, tile, x, y, rt.Points);
 
 					direction = TrackDirection::kEast;
 				}
-				else if (direction == kWest)
+				else if (direction == TrackDirection::kWest)
 				{
 					AddPoints(false, tile, x, y, rt.Points);
 
@@ -213,13 +213,13 @@ bool RaceTrackHandler::GeneratePoints(RaceTrack &rt)
 				break;
 
 			case BasicTrackType::kCurveTR:
-				if (direction == kEast)
+				if (direction == TrackDirection::kEast)
 				{
 					AddPoints(true, tile, x, y, rt.Points);
 
 					direction = TrackDirection::kSouth;
 				}
-				else if (direction == kNorth)
+				else if (direction == TrackDirection::kNorth)
 				{
 					AddPoints(false, tile, x, y, rt.Points);
 
@@ -232,13 +232,13 @@ bool RaceTrackHandler::GeneratePoints(RaceTrack &rt)
 				break;
 
 			case BasicTrackType::kCurveBR:
-				if (direction == kSouth)
+				if (direction == TrackDirection::kSouth)
 				{
 					AddPoints(true, tile, x, y, rt.Points);
 
 					direction = TrackDirection::kWest;
 				}
-				else if (direction == kEast)
+				else if (direction == TrackDirection::kEast)
 				{
 					AddPoints(false, tile, x, y, rt.Points);
 
@@ -251,13 +251,13 @@ bool RaceTrackHandler::GeneratePoints(RaceTrack &rt)
 				break;
 
 			case BasicTrackType::kCurveBL:
-				if (direction == kWest)
+				if (direction == TrackDirection::kWest)
 				{
 					AddPoints(true, tile, x, y, rt.Points);
 
 					direction = TrackDirection::kNorth;
 				}
-				else if (direction == kSouth)
+				else if (direction == TrackDirection::kSouth)
 				{
 					AddPoints(false, tile, x, y, rt.Points);
 
@@ -270,11 +270,11 @@ bool RaceTrackHandler::GeneratePoints(RaceTrack &rt)
 				break;
 
 			case BasicTrackType::kHorizontal:
-				if (direction == kEast)
+				if (direction == TrackDirection::kEast)
 				{
 					AddPoints(true, tile, x, y, rt.Points);
 				}
-				else if (direction == kWest)
+				else if (direction == TrackDirection::kWest)
 				{
 					AddPoints(false, tile, x, y, rt.Points);
 				}
@@ -285,11 +285,11 @@ bool RaceTrackHandler::GeneratePoints(RaceTrack &rt)
 				break;
 
 			case BasicTrackType::kVertical:
-				if (direction == kSouth)
+				if (direction == TrackDirection::kSouth)
 				{
 					AddPoints(true, tile, x, y, rt.Points);
 				}
-				else if (direction == kNorth)
+				else if (direction == TrackDirection::kNorth)
 				{
 					AddPoints(false, tile, x, y, rt.Points);
 				}
@@ -300,19 +300,19 @@ bool RaceTrackHandler::GeneratePoints(RaceTrack &rt)
 				break;
 
 			case BasicTrackType::kCrossroads:
-				if (direction == kEast)
+				if (direction == TrackDirection::kEast)
 				{
 					AddPoints(true, kTileStraightH, x, y, rt.Points);
 				}
-				else if (direction == kWest)
+				else if (direction == TrackDirection::kWest)
 				{
 					AddPoints(false, kTileStraightH, x, y, rt.Points);
 				}
-				else if (direction == kSouth)
+				else if (direction == TrackDirection::kSouth)
 				{
 					AddPoints(true, kTileStraightV, x, y, rt.Points);
 				}
-				else if (direction == kNorth)
+				else if (direction == TrackDirection::kNorth)
 				{
 					AddPoints(false, kTileStraightV, x, y, rt.Points);
 				}
@@ -425,29 +425,13 @@ bool RaceTrackHandler::Save(int index, const std::wstring file_name)
 		file << Formatting::to_utf8(L"z:" + std::to_wstring(RaceTracks[index].CountryId) + L"\n");
 		file << Formatting::to_utf8(L"c:" + std::to_wstring(RaceTracks[index].Category) + L"\n");
 		file << Formatting::to_utf8(L"s:" + std::to_wstring(RaceTracks[index].Scale) + L"\n");
-		file << Formatting::to_utf8(L"l:" + std::to_wstring(RaceTracks[index].Level) + L"\n");
 		file << Formatting::to_utf8(L"x:" + std::to_wstring(RaceTracks[index].MapX) + L"\n");
 		file << Formatting::to_utf8(L"y:" + std::to_wstring(RaceTracks[index].MapY) + L"\n");
 		file << Formatting::to_utf8(L"v:" + std::to_wstring(RaceTracks[index].StartX) + L"\n");
 		file << Formatting::to_utf8(L"w:" + std::to_wstring(RaceTracks[index].StartY) + L"\n");
-
-		switch (RaceTracks[index].StartDirection)
-		{
-		case TrackDirection::kNorth:
-			file << Formatting::to_utf8(L"m:0\n");
-			break;
-		case TrackDirection::kEast:
-			file << Formatting::to_utf8(L"m:1\n");
-			break;
-		case TrackDirection::kSouth:
-			file << Formatting::to_utf8(L"m:2\n");
-			break;
-		case TrackDirection::kWest:
-			file << Formatting::to_utf8(L"m:3\n");
-			break;
-		}
-
-		file << Formatting::to_utf8(L"t:0\n");
+		file << Formatting::to_utf8(L"l:" + std::to_wstring(LevelToInt(RaceTracks[index].Level)) + L"\n");
+		file << Formatting::to_utf8(L"m:" + std::to_wstring(DirectionToInt(RaceTracks[index].StartDirection)) + L"\n");
+		file << Formatting::to_utf8(L"t:" + std::to_wstring(TerrainToInt(RaceTracks[index].Terrain)) + L"\n");
 
 		for (int y = 0; y < kMaxTrackHeight; y++)
 		{
@@ -476,4 +460,70 @@ bool RaceTrackHandler::Save(int index, const std::wstring file_name)
 	}
 
 	return false;
+}
+
+
+int RaceTrackHandler::LevelToInt(TrackLevel tl)
+{
+	switch (tl)
+	{
+	case TrackLevel::kAmateur:
+		return 0;
+	case TrackLevel::kAmateurOffRoad:
+		return 1;
+	case TrackLevel::kAmateurEndurance:
+		return 2;
+	case TrackLevel::kClubSeries:
+		return 3;
+	case TrackLevel::kClubSeriesP2P:
+		return 4;
+	case TrackLevel::kClubSeriesOffRoad:
+		return 5;
+	case TrackLevel::kPro:
+		return 6;
+	case TrackLevel::kProP2P:
+		return 7;
+	case TrackLevel::kProOffRoad:
+		return 8;
+	case TrackLevel::kSuperLeague:
+		return 9;
+	case TrackLevel::kSuperLeagueP2P:
+		return 10;
+	case TrackLevel::kEndurance:
+		return 11;
+	}
+}
+
+
+int RaceTrackHandler::DirectionToInt(TrackDirection td)
+{
+	switch (td)
+	{
+	case TrackDirection::kNorth:
+		return 0;
+	case TrackDirection::kEast:
+		return 1;
+	case TrackDirection::kSouth:
+		return 2;
+	case TrackDirection::kWest:
+		return 3;
+	}
+}
+
+
+int RaceTrackHandler::TerrainToInt(TrackTerrain tt)
+{
+	switch (tt)
+	{
+	case TrackTerrain::kRoad:
+		return 0;
+	case TrackTerrain::kDirt:
+		return 1;
+	case TrackTerrain::kGrass:
+		return 2;
+	case TrackTerrain::kDesert:
+		return 3;
+	case TrackTerrain::kIce:
+		return 4;
+	}
 }

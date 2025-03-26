@@ -731,7 +731,7 @@ object Form1: TForm1
     ParentFont = False
   end
   object lLength: TLabel
-    Left = 684
+    Left = 1044
     Top = 7
     Width = 23
     Height = 21
@@ -784,7 +784,7 @@ object Form1: TForm1
     OnClick = bSaveAsClick
   end
   object bTest: TBitBtn
-    Left = 603
+    Left = 963
     Top = 8
     Width = 75
     Height = 25
@@ -802,8 +802,8 @@ object Form1: TForm1
     OnClick = bStartClick
   end
   object cbShowRoute: TCheckBox
-    Left = 794
-    Top = 9
+    Left = 970
+    Top = 39
     Width = 97
     Height = 17
     Caption = 'Show route'
@@ -835,11 +835,52 @@ object Form1: TForm1
     TabOrder = 7
     OnClick = bSaveClick
   end
+  object cbTrackTerrain: TComboBox
+    Left = 556
+    Top = 8
+    Width = 97
+    Height = 23
+    Style = csDropDownList
+    ItemIndex = 0
+    TabOrder = 8
+    Text = 'Road'
+    OnChange = cbTrackTerrainChange
+    Items.Strings = (
+      'Road'
+      'Dirt'
+      'Grass'
+      'Desert'
+      'Ice')
+  end
+  object cbLevel: TComboBox
+    Left = 659
+    Top = 8
+    Width = 118
+    Height = 23
+    Style = csDropDownList
+    ItemIndex = 0
+    TabOrder = 9
+    Text = 'Amateur'
+    OnChange = cbLevelChange
+    Items.Strings = (
+      'Amateur'
+      'Amateur (Off-road)'
+      'Amateur Endurance'
+      'Club Series'
+      'Club Series P2P'
+      'ClubSeries (Off-road)'
+      'Pro'
+      'Pro P2P'
+      'Pro (Off-road)'
+      'SuperLeague'
+      'SuperLeague P2P'
+      'Endurance')
+  end
   object sdMain: TSaveDialog
     DefaultExt = '.dat'
     Filter = 'SRE Track Files (*.dat)|*.dat'
-    Left = 1048
-    Top = 24
+    Left = 1160
+    Top = 32
   end
   object odMain: TOpenDialog
     Filter = 'SRE Track Files (*.dat)|*.dat'

@@ -53,6 +53,8 @@ __published:	// IDE-managed Components
 	TCheckBox *cbShowRoute;
 	TComboBox *cbStartDirection;
 	TBitBtn *bSave;
+	TComboBox *cbTrackTerrain;
+	TComboBox *cbLevel;
 	void __fastcall pbTrackPaint(TObject *Sender);
 	void __fastcall pbTrackMouseMove(TObject *Sender, TShiftState Shift, int X, int Y);
 	void __fastcall pbTrackMouseDown(TObject *Sender, TMouseButton Button, TShiftState Shift,
@@ -72,6 +74,8 @@ __published:	// IDE-managed Components
 	void __fastcall cbShowRouteClick(TObject *Sender);
 	void __fastcall cbStartDirectionChange(TObject *Sender);
 	void __fastcall bSaveClick(TObject *Sender);
+	void __fastcall cbTrackTerrainChange(TObject *Sender);
+	void __fastcall cbLevelChange(TObject *Sender);
 
 private:
 

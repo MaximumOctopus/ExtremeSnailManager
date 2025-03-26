@@ -28,8 +28,9 @@ public:
 	int UniqueId = 0;
 	int CountryId = 0;
 	int Category = 0;
-	int Level = 0;
 	int Scale = 1;
+
+	TrackLevel Level = TrackLevel::kAmateur;
 	TrackTerrain Terrain = TrackTerrain::kNone;
 
     TrackDirection StartDirection = TrackDirection::kEast;
@@ -50,4 +51,6 @@ public:
 	void AddTrackRow(int, const std::wstring);
 
 	void SetStartDirection(int);
+	void SetLevel(int);
+	void SetTrackTerrain(int);
 };
